@@ -47,7 +47,7 @@ const SurveyPage = () => {
 
   return (
     <main>
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary to-sproxil-teal">
+      <section className="py-16 lg:py-24 bg-primary">
         <div className="container grid lg:grid-cols-2 gap-12 items-center">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
             <Gift className="w-10 h-10 text-sproxil-gold mb-4" />
@@ -68,7 +68,7 @@ const SurveyPage = () => {
           <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="flex justify-center">
             <PhoneMockup>
               <div className="flex flex-col h-full">
-                <div className="bg-sproxil-teal text-secondary-foreground px-4 py-3 pt-8">
+                <div className="bg-primary text-primary-foreground px-4 py-3 pt-8">
                   <p className="text-sm font-semibold">Sproxil Patient Survey</p>
                   <p className="text-xs opacity-70">Complete to earn ₦1,000 airtime</p>
                 </div>
@@ -78,7 +78,7 @@ const SurveyPage = () => {
                     <motion.div key={currentQ} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
                       <p className="text-xs text-muted-foreground font-body mb-1">Question {currentQ + 1} of {surveyQuestions.length}</p>
                       <div className="w-full h-1.5 bg-muted rounded-full mb-4">
-                        <div className="h-full bg-secondary rounded-full transition-all" style={{ width: `${((currentQ + 1) / surveyQuestions.length) * 100}%` }} />
+                        <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${((currentQ + 1) / surveyQuestions.length) * 100}%` }} />
                       </div>
                       <p className="text-sm font-semibold mb-4">{surveyQuestions[currentQ].q}</p>
                       <div className="space-y-2">
@@ -86,7 +86,7 @@ const SurveyPage = () => {
                           <button
                             key={opt}
                             onClick={() => handleAnswer(opt)}
-                            className="w-full text-left px-4 py-3 rounded-xl border text-sm hover:bg-secondary/10 hover:border-secondary transition-colors font-body"
+                            className="w-full text-left px-4 py-3 rounded-xl border text-sm hover:bg-primary/10 hover:border-primary transition-colors font-body"
                           >
                             {opt}
                           </button>
@@ -124,7 +124,7 @@ const SurveyPage = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {surveyStats.map((s, i) => (
               <motion.div key={s.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i} className="text-center">
-                <s.icon className="w-8 h-8 text-secondary mx-auto mb-2" />
+                <s.icon className="w-8 h-8 text-primary mx-auto mb-2" />
                 <p className="text-3xl font-extrabold text-foreground">{s.value}</p>
                 <p className="text-sm text-muted-foreground font-body">{s.label}</p>
               </motion.div>

@@ -4,6 +4,7 @@ import { Factory, Truck, Building, Store, User, QrCode, Package, Scan, ArrowRigh
 import { Card, CardContent } from "@/components/ui/card";
 import PhoneMockup from "@/components/PhoneMockup";
 import GlossaryTerm from "@/components/GlossaryTerm";
+import nigeriaMapImg from "@/assets/nigeria-coverage-map.jpg";
 
 const nodes = [
   {
@@ -57,7 +58,7 @@ const SupplyChainPage = () => {
 
   return (
     <main>
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary to-sproxil-teal">
+      <section className="py-16 lg:py-24 bg-primary">
         <div className="container">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0} className="text-center mb-12">
             <h1 className="text-3xl md:text-5xl font-extrabold text-primary-foreground mb-4">
@@ -78,7 +79,7 @@ const SupplyChainPage = () => {
                   onClick={() => setActiveNode(i)}
                   className={`flex flex-col items-center p-4 rounded-xl transition-all ${
                     activeNode === i
-                      ? "bg-sproxil-gold text-primary shadow-lg"
+                      ? "bg-sproxil-gold text-foreground shadow-lg"
                       : "bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20"
                   }`}
                 >
@@ -114,35 +115,52 @@ const SupplyChainPage = () => {
         </div>
       </section>
 
-      {/* Trace Map + Consumer Verification */}
+      {/* Coverage Map */}
       <section className="py-16 bg-background">
-        <div className="container grid lg:grid-cols-2 gap-12 items-start">
-          {/* Trace Timeline */}
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Product Trace Record</h2>
-            <p className="text-sm text-muted-foreground font-body mb-6">
-              Example: <GlossaryTerm term="ACT">ACT</GlossaryTerm> Batch EMZ-ACT-2025-0042 — full journey from factory to patient
-            </p>
-            <div className="space-y-0">
-              {traceEvents.map((ev, i) => (
-                <motion.div key={ev.status} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i} className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
-                      <ev.icon className="w-5 h-5 text-secondary" />
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Trace Timeline */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6">Product Trace Record</h2>
+              <p className="text-sm text-muted-foreground font-body mb-6">
+                Example: <GlossaryTerm term="ACT">ACT</GlossaryTerm> Batch EMZ-ACT-2025-0042 — full journey from factory to patient
+              </p>
+              <div className="space-y-0">
+                {traceEvents.map((ev, i) => (
+                  <motion.div key={ev.status} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i} className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                        <ev.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      {i < traceEvents.length - 1 && <div className="w-0.5 h-12 bg-border" />}
                     </div>
-                    {i < traceEvents.length - 1 && <div className="w-0.5 h-12 bg-border" />}
-                  </div>
-                  <div className="pb-8">
-                    <p className="font-semibold text-sm">{ev.status}</p>
-                    <p className="text-xs text-muted-foreground font-body">{ev.location}</p>
-                    <p className="text-xs text-muted-foreground/60 font-body">{ev.time}</p>
-                  </div>
-                </motion.div>
-              ))}
+                    <div className="pb-8">
+                      <p className="font-semibold text-sm">{ev.status}</p>
+                      <p className="text-xs text-muted-foreground font-body">{ev.location}</p>
+                      <p className="text-xs text-muted-foreground/60 font-body">{ev.time}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Coverage map image from slides */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6">Nigeria Coverage Map</h2>
+              <p className="text-sm text-muted-foreground font-body mb-6">
+                Product verification events tracked across 774 <GlossaryTerm term="LGA">LGAs</GlossaryTerm>
+              </p>
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                <img src={nigeriaMapImg} alt="Nigeria coverage map showing verification events" className="w-full rounded-xl shadow-lg border" />
+              </motion.div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Consumer Verification Phone */}
+      {/* Consumer Verification */}
+      <section className="py-16 bg-muted/50">
+        <div className="container grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-2xl font-bold mb-6">Consumer Verification</h2>
             <p className="text-sm text-muted-foreground font-body mb-6">
@@ -150,7 +168,7 @@ const SupplyChainPage = () => {
             </p>
             <PhoneMockup>
               <div className="p-4 pt-10 space-y-3">
-                <div className="bg-sproxil-teal text-secondary-foreground rounded-xl p-4 text-center">
+                <div className="bg-primary text-primary-foreground rounded-xl p-4 text-center">
                   <QrCode className="w-12 h-12 mx-auto mb-2" />
                   <p className="text-sm font-bold">Scan to Verify</p>
                 </div>
@@ -173,30 +191,28 @@ const SupplyChainPage = () => {
               </div>
             </PhoneMockup>
           </div>
-        </div>
-      </section>
 
-      {/* GS1 Compliance */}
-      <section className="py-16 bg-muted/50">
-        <div className="container text-center">
-          <h2 className="text-2xl font-bold mb-8">GS1 Compliance Standards</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { label: "GTIN", desc: "Global Trade Item Number — unique product identifier" },
-              { label: "Batch/Lot", desc: "Production batch tracking for recalls" },
-              { label: "Serial Numbers", desc: "Unit-level unique identification" },
-              { label: "DataMatrix", desc: "2D barcode encoding all product data" },
-            ].map((item, i) => (
-              <motion.div key={item.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
-                <Card>
-                  <CardContent className="p-6">
-                    <Scan className="w-8 h-8 text-secondary mx-auto mb-3" />
-                    <h3 className="font-bold">{item.label}</h3>
-                    <p className="text-xs text-muted-foreground mt-1 font-body">{item.desc}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          {/* GS1 Compliance */}
+          <div>
+            <h2 className="text-2xl font-bold mb-8">GS1 Compliance Standards</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: "GTIN", desc: "Global Trade Item Number — unique product identifier" },
+                { label: "Batch/Lot", desc: "Production batch tracking for recalls" },
+                { label: "Serial Numbers", desc: "Unit-level unique identification" },
+                { label: "DataMatrix", desc: "2D barcode encoding all product data" },
+              ].map((item, i) => (
+                <motion.div key={item.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
+                  <Card>
+                    <CardContent className="p-5">
+                      <Scan className="w-8 h-8 text-primary mx-auto mb-3" />
+                      <h3 className="font-bold text-center">{item.label}</h3>
+                      <p className="text-xs text-muted-foreground mt-1 font-body text-center">{item.desc}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

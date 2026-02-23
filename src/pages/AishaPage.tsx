@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Bot, MessageSquare, Pill, AlertTriangle, Clock, CheckCircle, Stethoscope, Globe } from "lucide-react";
+import { Send, Bot, MessageSquare, Pill, AlertTriangle, Clock, CheckCircle, Stethoscope, Globe, ClipboardList, HeartPulse } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import PhoneMockup from "@/components/PhoneMockup";
 import GlossaryTerm from "@/components/GlossaryTerm";
+import aishaPhoneImg from "@/assets/aisha-phone-demo.jpg";
 
 const features = [
   { icon: Stethoscope, title: "Point of Care Diagnosis", desc: "AI-assisted interpretation of mRDT results from photos" },
@@ -62,7 +63,7 @@ const AishaPage = () => {
 
   return (
     <main>
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary via-primary to-sproxil-teal">
+      <section className="py-16 lg:py-24 bg-primary">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
@@ -71,24 +72,28 @@ const AishaPage = () => {
                 <span className="text-sproxil-gold font-bold text-lg">AISHA</span>
               </div>
               <h1 className="text-3xl md:text-5xl font-extrabold text-primary-foreground leading-tight mb-4">
-                AI Health Agent for Community Healthcare
+                AI-Powered Support Health Agent
               </h1>
               <p className="text-primary-foreground/80 text-lg mb-6 font-body max-w-lg">
-                AISHA works over WhatsApp to assist <GlossaryTerm term="PPMV">PPMVs</GlossaryTerm> with point-of-care
-                decisions — from <GlossaryTerm term="mRDT">mRDT</GlossaryTerm> interpretation to dosage guidance, drug
-                interaction checks, and patient follow-up.
+                Instant health guidance through the world's most popular messaging platform. AISHA assists <GlossaryTerm term="PPMV">PPMVs</GlossaryTerm> with point-of-care
+                decisions — from <GlossaryTerm term="mRDT">mRDT</GlossaryTerm> interpretation to dosage guidance and patient follow-up.
               </p>
               <div className="flex items-center gap-3 flex-wrap">
                 <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary-foreground/10 text-primary-foreground text-sm">
                   <Globe className="w-4 h-4" /> English · Hausa · Yoruba · Igbo
                 </div>
               </div>
+
+              {/* AISHA phone number */}
+              <div className="mt-6 p-4 rounded-xl bg-primary-foreground/10 border border-primary-foreground/20">
+                <p className="text-primary-foreground text-sm font-bold">AISHA No: +17812409690</p>
+              </div>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="flex justify-center">
               <PhoneMockup>
                 <div className="flex flex-col h-full">
-                  <div className="bg-sproxil-teal text-secondary-foreground px-4 py-3 pt-8 flex items-center gap-3">
+                  <div className="bg-primary text-primary-foreground px-4 py-3 pt-8 flex items-center gap-3">
                     <Bot className="w-6 h-6" />
                     <div>
                       <p className="text-sm font-semibold">AISHA Health Agent</p>
@@ -132,34 +137,104 @@ const AishaPage = () => {
         </div>
       </section>
 
-      {/* Feature cards */}
+      {/* How patients access AISHA — with real image */}
       <section className="py-16 bg-background">
         <div className="container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-8">How Patients Access AISHA</h2>
+              <div className="space-y-6">
+                {[
+                  { step: 1, title: "Patient verifies medicine / Directly chat AISHA", desc: "SMS/USSD code to 38353" },
+                  { step: 2, title: "Receives confirmation + link", desc: "OK Original + AISHA Chat invite" },
+                  { step: 3, title: "Opens WhatsApp chat", desc: "No app download needed" },
+                  { step: 4, title: "Asks health questions", desc: "Local language support" },
+                ].map((item) => (
+                  <motion.div key={item.step} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={item.step} className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
+                      {item.step}
+                    </div>
+                    <div>
+                      <p className="font-bold">{item.title}</p>
+                      <p className="text-sm text-muted-foreground font-body">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex justify-center">
+              <img src={aishaPhoneImg} alt="AISHA WhatsApp demo" className="max-w-sm w-full rounded-2xl shadow-xl" />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Capability Grid — matching slide layout */}
+      <section className="py-16 bg-muted/50">
+        <div className="container">
           <h2 className="text-3xl font-bold text-center mb-10">AISHA Capabilities</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <motion.div key={f.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <f.icon className="w-8 h-8 text-secondary mb-3" />
-                    <h3 className="font-bold mb-1">{f.title}</h3>
-                    <p className="text-sm text-muted-foreground font-body">{f.desc}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <Card className="border-primary/30 border-2">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold text-primary mb-3">Point of Care Diagnosis</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground font-body">
+                  <li>• Dosage guidance</li>
+                  <li>• Drug interactions check</li>
+                  <li>• Symptom assessment</li>
+                  <li>• Referral recommendations</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-primary/30 border-2">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold text-primary mb-3">Case Management</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground font-body">
+                  <li>• Treatment reminders</li>
+                  <li>• Adherence tracking</li>
+                  <li>• Follow-up scheduling</li>
+                  <li>• Outcome monitoring</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-primary/30 border-2">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold text-primary mb-3">Health Campaigns</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground font-body">
+                  <li>• ITN distribution support</li>
+                  <li>• Vaccination reminders</li>
+                  <li>• Health education content</li>
+                  <li>• Campaign enrollment</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-primary/30 border-2">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold text-primary mb-3">Surveys & Data Collection</h3>
+                <ul className="space-y-1 text-sm text-muted-foreground font-body">
+                  <li>• Real-time survey delivery</li>
+                  <li>• GPS-verified responses</li>
+                  <li>• Automated data analysis</li>
+                  <li>• 78.8% completion rate</li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Campaign stats */}
-      <section className="py-16 bg-muted/50">
+      <section className="py-16 bg-background">
         <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-10">Health Campaign Reach</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {campaignStats.map((s, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {[
+              { value: "51M+", label: "WhatsApp Users in Nigeria" },
+              { value: "24/7", label: "Availability" },
+              { value: "4", label: "Languages: Hausa, Yoruba, Igbo, English" },
+              { value: "Zero", label: "App Download" },
+              { value: "Instant", label: "Response" },
+            ].map((s, i) => (
               <motion.div key={s.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i} className="text-center">
-                <p className="text-4xl font-extrabold text-secondary">{s.value}</p>
+                <p className="text-3xl font-extrabold text-primary">{s.value}</p>
                 <p className="text-sm text-muted-foreground mt-1 font-body">{s.label}</p>
               </motion.div>
             ))}
