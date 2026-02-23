@@ -84,6 +84,8 @@ const AishaPage = () => {
                 </div>
               </div>
 
+              <img src="/sproxil-logo.png" alt="Sproxil" className="h-10 mt-6 brightness-200" />
+
               {/* AISHA phone number */}
               <div className="mt-6 p-4 rounded-xl bg-primary-foreground/10 border border-primary-foreground/20">
                 <p className="text-primary-foreground text-sm font-bold">AISHA No: +17812409690</p>

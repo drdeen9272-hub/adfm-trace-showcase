@@ -83,6 +83,7 @@ const Index = () => {
         </div>
 
         <div className="container relative z-10">
+          <img src="/sproxil-logo.png" alt="Sproxil" className="h-10 mb-8 brightness-200" />
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left — Text */}
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
