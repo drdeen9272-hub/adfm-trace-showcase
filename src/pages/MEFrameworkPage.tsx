@@ -40,7 +40,7 @@ const quantification = [
 
 const partners = [
   "NMEP (National Malaria Elimination Programme)",
-  "PVAC (Product Verification & Authentication Centre)",
+  "PVAC (Product Verification & Authentication Centre — Presidential Initiative for Unlocking Value Chain)",
   "Codix Pharma",
   "Emzor Pharmaceutical",
   "Fidson Healthcare",
