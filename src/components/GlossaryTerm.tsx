@@ -12,7 +12,7 @@ const glossary: Record<string, string> = {
   GS1: "Global Standards One — International system for unique product identification using barcodes (GTIN, serial numbers, DataMatrix codes)",
   GTIN: "Global Trade Item Number — A unique 14-digit identifier assigned to each product, part of the GS1 standard",
   ITN: "Insecticide-Treated Net — Bed nets treated with insecticide to prevent mosquito bites during sleep",
-  PVAC: "Product Verification and Authentication Centre — A presidential initiative for unlocking the value chain in pharmaceutical products",
+  PVAC: "Presidential Initiative for Unlocking the Value Chain — A government programme to combat counterfeit pharmaceuticals through product verification and authentication",
 };
 
 interface GlossaryTermProps {

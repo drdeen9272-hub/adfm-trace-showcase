@@ -40,7 +40,7 @@ const quantification = [
 
 const partners = [
   "NMEP (National Malaria Elimination Programme)",
-  "PVAC (Product Verification & Authentication Centre — Presidential Initiative for Unlocking Value Chain)",
+  "PVAC (Presidential Initiative for Unlocking the Value Chain)",
   "Codix Pharma",
   "Emzor Pharmaceutical",
   "Fidson Healthcare",
@@ -57,7 +57,7 @@ const MEFrameworkPage = () => {
 
   return (
     <main>
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary to-sproxil-teal">
+      <section className="py-16 lg:py-24 bg-primary">
         <div className="container text-center">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
             <h1 className="text-3xl md:text-5xl font-extrabold text-primary-foreground mb-4">
@@ -87,7 +87,7 @@ const MEFrameworkPage = () => {
                 </Card>
               </motion.div>
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1} className="flex items-center justify-center">
-                <div className="text-4xl font-extrabold text-secondary">+</div>
+                <div className="text-4xl font-extrabold text-primary">+</div>
               </motion.div>
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={2}>
                 <Card className="bg-secondary text-secondary-foreground">
@@ -127,10 +127,10 @@ const MEFrameworkPage = () => {
                   onClick={() => setExpanded(expanded === i ? null : i)}
                   className="w-full text-left"
                 >
-                  <Card className={`transition-all ${expanded === i ? "ring-2 ring-secondary" : ""}`}>
+                  <Card className={`transition-all ${expanded === i ? "ring-2 ring-primary" : ""}`}>
                     <CardContent className="p-4 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center text-sm font-bold text-secondary">
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
                           {i + 1}
                         </div>
                         <p className="font-semibold text-sm">{obj.title}</p>
@@ -157,7 +157,7 @@ const MEFrameworkPage = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {quantification.map((q, i) => (
               <motion.div key={q.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i} className="text-center">
-                <q.icon className="w-8 h-8 text-secondary mx-auto mb-2" />
+                <q.icon className="w-8 h-8 text-primary mx-auto mb-2" />
                 <p className="text-3xl font-extrabold">{q.value}</p>
                 <p className="text-sm text-muted-foreground font-body">{q.label}</p>
               </motion.div>

@@ -6,6 +6,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import PhoneMockup from "@/components/PhoneMockup";
 import WhatsAppDemo from "@/components/WhatsAppDemo";
 import GlossaryTerm from "@/components/GlossaryTerm";
+import ppmvTestingImg from "@/assets/ppmv-testing.jpg";
+import swidarImg from "@/assets/swidar-package.jpg";
+import nigeriaMapImg from "@/assets/nigeria-coverage-map.jpg";
 
 const stats = [
   { value: "4.5B+", label: "Products Protected" },
@@ -19,30 +22,26 @@ const steps = [
   {
     icon: FlaskConical,
     title: "TEST",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
     desc: "Pharmacist administers an mRDT (rapid malaria test), sends a photo to Sproxil via WhatsApp. AI instantly interprets the result — positive or negative.",
+    image: ppmvTestingImg,
   },
   {
     icon: Pill,
-    title: "TREAT",
-    color: "text-green-500",
-    bg: "bg-green-500/10",
+    title: "TREAT +ve",
     desc: "Patient purchases a verified ACT (malaria medicine). They scratch the security label, text the PIN to confirm it's genuine, and receive a confirmation SMS.",
+    image: swidarImg,
   },
   {
     icon: MapPin,
     title: "TRACK",
-    color: "text-orange-500",
-    bg: "bg-orange-500/10",
     desc: "GPS location is captured automatically. GS1-standard batch traceability is logged, photo evidence is securely stored — full accountability from factory to patient.",
+    image: nigeriaMapImg,
   },
   {
     icon: Gift,
     title: "INCENTIVIZE",
-    color: "text-purple-500",
-    bg: "bg-purple-500/10",
     desc: "Pharmacist earns ₦150 per verified test-and-treat cycle. Patient receives ₦850 airtime after completing an outcome survey — everyone is rewarded for doing the right thing.",
+    image: null,
   },
 ];
 
@@ -77,17 +76,17 @@ const Index = () => {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-sproxil-teal py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-primary py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-secondary blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 rounded-full bg-sproxil-gold blur-3xl" />
+          <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-sproxil-gold blur-3xl" />
+          <div className="absolute bottom-10 right-20 w-96 h-96 rounded-full bg-primary-foreground blur-3xl" />
         </div>
 
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left — Text */}
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
-              <span className="inline-block px-4 py-1.5 mb-4 rounded-full bg-secondary/20 text-secondary-foreground text-sm font-medium border border-secondary/30">
+              <span className="inline-block px-4 py-1.5 mb-4 rounded-full bg-primary-foreground/20 text-primary-foreground text-sm font-medium border border-primary-foreground/30">
                 🦟 ADMFm Program — Interactive Demo
               </span>
               <h1 className="text-3xl md:text-5xl font-extrabold text-primary-foreground leading-tight mb-4">
@@ -102,7 +101,7 @@ const Index = () => {
                 program — ensuring every test kit and medicine reaches the right patient, verified and tracked.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Button size="lg" className="bg-sproxil-gold text-primary hover:bg-sproxil-gold/90 font-semibold" asChild>
+                <Button size="lg" className="bg-sproxil-gold text-foreground hover:bg-sproxil-gold/90 font-semibold" asChild>
                   <a href="#how-it-works">
                     Explore the Solution <ArrowRight className="ml-1 w-4 h-4" />
                   </a>
@@ -159,8 +158,8 @@ const Index = () => {
               <motion.div key={c.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
                 <Card className="h-full hover:shadow-lg transition-shadow border-border/50">
                   <CardContent className="p-6">
-                    <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                      <c.icon className="w-6 h-6 text-secondary" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <c.icon className="w-6 h-6 text-primary" />
                     </div>
                     <h3 className="text-lg font-bold mb-2">{c.title}</h3>
                     <p className="text-sm text-muted-foreground font-body">{c.desc}</p>
@@ -176,24 +175,37 @@ const Index = () => {
       <section id="how-it-works" className="py-16 lg:py-24 bg-muted/50">
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">How It Works</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Accountability Flow</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto font-body">
-              A four-step accountability loop — from diagnosis to reward
+              Ensuring subsidized malaria commodities reach patients with verified outcomes
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((s, i) => (
               <motion.div key={s.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
-                <Card className="h-full hover:shadow-lg transition-all hover:-translate-y-1 border-border/50 group">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={`w-10 h-10 rounded-lg ${s.bg} flex items-center justify-center`}>
-                        <s.icon className={`w-5 h-5 ${s.color}`} />
+                <Card className="h-full hover:shadow-lg transition-all hover:-translate-y-1 border-border/50 group overflow-hidden">
+                  {s.image && (
+                    <div className="h-40 overflow-hidden">
+                      <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+                  )}
+                  {!s.image && (
+                    <div className="h-40 bg-gradient-to-br from-sproxil-green to-sproxil-gold/80 flex items-center justify-center">
+                      <div className="text-center text-primary-foreground">
+                        <p className="text-lg font-extrabold">PPMV: ₦150</p>
+                        <p className="text-xs opacity-80">Patient: ₦850 airtime</p>
+                      </div>
+                    </div>
+                  )}
+                  <CardContent className="p-5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <s.icon className="w-4 h-4 text-primary" />
                       </div>
                       <span className="text-xs font-bold text-muted-foreground">STEP {i + 1}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2">{s.title}</h3>
+                    <h3 className="text-xl font-bold mb-2 text-primary">{s.title}</h3>
                     <p className="text-sm text-muted-foreground font-body">{s.desc}</p>
                   </CardContent>
                 </Card>
@@ -204,7 +216,7 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-primary to-sproxil-teal text-primary-foreground">
+      <section className="py-16 bg-primary text-primary-foreground">
         <div className="container text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0}>
             <h2 className="text-3xl font-bold mb-4">Explore the Full Platform</h2>
@@ -212,7 +224,7 @@ const Index = () => {
               See how AISHA, supply chain traceability, real-time TPR dashboards, and patient incentives work together.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="bg-sproxil-gold text-primary hover:bg-sproxil-gold/90 font-semibold" asChild>
+              <Button size="lg" className="bg-sproxil-gold text-foreground hover:bg-sproxil-gold/90 font-semibold" asChild>
                 <Link to="/aisha">Meet AISHA</Link>
               </Button>
               <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>

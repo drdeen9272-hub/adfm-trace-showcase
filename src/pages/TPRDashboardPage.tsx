@@ -61,7 +61,7 @@ const TPRDashboardPage = () => {
 
   return (
     <main>
-      <section className="py-12 bg-gradient-to-br from-primary to-sproxil-teal">
+      <section className="py-12 bg-primary">
         <div className="container">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
             <h1 className="text-3xl md:text-4xl font-extrabold text-primary-foreground mb-2">
@@ -78,13 +78,13 @@ const TPRDashboardPage = () => {
         <div className="container">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 mb-6 text-sm font-body">
-            <button onClick={() => { setLevel("national"); setSelectedState(""); }} className={level === "national" ? "font-bold text-secondary" : "text-muted-foreground hover:text-foreground"}>
+            <button onClick={() => { setLevel("national"); setSelectedState(""); }} className={level === "national" ? "font-bold text-primary" : "text-muted-foreground hover:text-foreground"}>
               Nigeria (National)
             </button>
             {selectedState && (
               <>
                 <ChevronRight className="w-4 h-4 text-muted-foreground" />
-                <button onClick={() => setLevel("state")} className={level === "state" || level === "lga" ? "font-bold text-secondary" : "text-muted-foreground"}>
+                <button onClick={() => setLevel("state")} className={level === "state" || level === "lga" ? "font-bold text-primary" : "text-muted-foreground"}>
                   {selectedState} State
                 </button>
               </>
@@ -92,18 +92,17 @@ const TPRDashboardPage = () => {
             {level === "lga" && (
               <>
                 <ChevronRight className="w-4 h-4 text-muted-foreground" />
-                <span className="font-bold text-secondary">LGA Level</span>
+                <span className="font-bold text-primary">LGA Level</span>
               </>
             )}
           </div>
 
           <div className="grid lg:grid-cols-3 gap-6">
-            {/* Map area / State list */}
             <div className="lg:col-span-2">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-secondary" />
+                    <MapPin className="w-5 h-5 text-primary" />
                     {level === "national" ? "State-Level TPR Data" : level === "state" ? `${selectedState} — LGA Breakdown` : "Pharmacy Detail"}
                   </CardTitle>
                 </CardHeader>
@@ -193,7 +192,7 @@ const TPRDashboardPage = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-secondary" /> TPR Color Legend
+                    <Activity className="w-4 h-4 text-primary" /> TPR Color Legend
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
@@ -206,7 +205,7 @@ const TPRDashboardPage = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-secondary" /> Seasonal TPR Trend
+                    <TrendingUp className="w-4 h-4 text-primary" /> Seasonal TPR Trend
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -216,7 +215,7 @@ const TPRDashboardPage = () => {
                       <XAxis dataKey="month" tick={{ fontSize: 10 }} />
                       <YAxis tick={{ fontSize: 10 }} domain={[0, 100]} />
                       <Tooltip />
-                      <Line type="monotone" dataKey="tpr" stroke="hsl(174, 62%, 40%)" strokeWidth={2} dot={{ r: 3 }} />
+                      <Line type="monotone" dataKey="tpr" stroke="hsl(0, 72%, 42%)" strokeWidth={2} dot={{ r: 3 }} />
                     </LineChart>
                   </ResponsiveContainer>
                 </CardContent>
