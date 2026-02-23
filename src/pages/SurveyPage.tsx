@@ -50,6 +50,7 @@ const SurveyPage = () => {
       <section className="py-16 lg:py-24 bg-primary">
         <div className="container grid lg:grid-cols-2 gap-12 items-center">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
+            <img src="/sproxil-logo.png" alt="Sproxil" className="h-10 mb-6 brightness-200" />
             <Gift className="w-10 h-10 text-sproxil-gold mb-4" />
             <h1 className="text-3xl md:text-5xl font-extrabold text-primary-foreground mb-4">
               Patient Survey & Incentives
