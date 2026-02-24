@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import sproxilLogo from "@/assets/sproxil-logo-red.jpg";
 
 const links = [
   { to: "/", label: "Home" },
@@ -21,7 +22,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/sproxil-logo.png" alt="Sproxil" className="h-9" />
+          <img src={sproxilLogo} alt="Sproxil" className="h-9" />
         </Link>
 
         {/* Desktop */}

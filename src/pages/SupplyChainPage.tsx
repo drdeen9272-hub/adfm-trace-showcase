@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import PhoneMockup from "@/components/PhoneMockup";
 import GlossaryTerm from "@/components/GlossaryTerm";
 import nigeriaMapImg from "@/assets/nigeria-coverage-map.jpg";
+import sproxilLogo from "@/assets/sproxil-logo-red.jpg";
 
 const nodes = [
   {
@@ -60,7 +61,7 @@ const SupplyChainPage = () => {
     <main>
       <section className="py-16 lg:py-24 bg-primary">
         <div className="container">
-          <img src="/sproxil-logo.png" alt="Sproxil" className="h-10 mx-auto mb-6 brightness-200" />
+          <img src={sproxilLogo} alt="Sproxil" className="h-10 mx-auto mb-6" />
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0} className="text-center mb-12">
             <h1 className="text-3xl md:text-5xl font-extrabold text-primary-foreground mb-4">
               Supply Chain Traceability

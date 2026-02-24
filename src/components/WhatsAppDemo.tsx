@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Check, CheckCheck, Camera } from "lucide-react";
+import { Send, CheckCheck, Camera, RotateCcw } from "lucide-react";
+import mrdtPhoto from "@/assets/mrdt-test-photo.jpg";
 
 interface Message {
   id: number;
@@ -21,33 +22,47 @@ const demoFlow: Message[] = [
 const WhatsAppDemo = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [step, setStep] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const handleNext = () => {
-    if (step >= demoFlow.length) return;
-    // Add messages up to next user message or all remaining bot messages
-    const newMsgs: Message[] = [];
-    let i = step;
-    newMsgs.push(demoFlow[i]);
-    i++;
-    // Add consecutive bot messages
-    while (i < demoFlow.length && demoFlow[i].sender === "bot") {
+  const advanceStep = useCallback(() => {
+    setStep((prevStep) => {
+      if (prevStep >= demoFlow.length) return prevStep;
+      const newMsgs: Message[] = [];
+      let i = prevStep;
       newMsgs.push(demoFlow[i]);
       i++;
-    }
-    setMessages((prev) => [...prev, ...newMsgs]);
-    setStep(i);
-  };
+      while (i < demoFlow.length && demoFlow[i].sender === "bot") {
+        newMsgs.push(demoFlow[i]);
+        i++;
+      }
+      setMessages((prev) => [...prev, ...newMsgs]);
+      return i;
+    });
+  }, []);
 
-  const handleReset = () => {
+  // Auto-play on mount
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    if (step >= demoFlow.length) {
+      setIsAutoPlaying(false);
+      return;
+    }
+    const delay = step === 0 ? 800 : 1800;
+    const timer = setTimeout(advanceStep, delay);
+    return () => clearTimeout(timer);
+  }, [step, isAutoPlaying, advanceStep]);
+
+  const handleReplay = () => {
     setMessages([]);
     setStep(0);
+    setIsAutoPlaying(true);
   };
 
   return (
     <div className="flex flex-col h-full">
       {/* WhatsApp header */}
-      <div className="bg-sproxil-teal text-secondary-foreground px-4 py-3 pt-8 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-secondary-foreground/20 flex items-center justify-center text-xs font-bold">S</div>
+      <div className="bg-[#075E54] text-white px-4 py-3 pt-8 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold">S</div>
         <div>
           <p className="text-sm font-semibold">Sproxil ADMFm</p>
           <p className="text-xs opacity-70">Online</p>
@@ -73,9 +88,12 @@ const WhatsAppDemo = () => {
                 }`}
               >
                 {msg.image && (
-                  <div className="bg-gray-200 rounded mb-1 p-4 flex items-center justify-center">
-                    <Camera className="w-6 h-6 text-gray-500" />
-                    <span className="text-[10px] ml-1 text-gray-500">Photo</span>
+                  <div className="rounded mb-1 overflow-hidden">
+                    <img src={mrdtPhoto} alt="mRDT Test" className="w-full h-24 object-cover rounded" />
+                    <div className="flex items-center gap-1 mt-1">
+                      <Camera className="w-3 h-3 text-gray-500" />
+                      <span className="text-[10px] text-gray-500">mRDT Photo</span>
+                    </div>
                   </div>
                 )}
                 <p className="whitespace-pre-line">{msg.text}</p>
@@ -89,28 +107,25 @@ const WhatsAppDemo = () => {
         </AnimatePresence>
 
         {messages.length === 0 && (
-          <p className="text-center text-xs text-gray-500 mt-8">Tap below to start the demo</p>
+          <p className="text-center text-xs text-gray-500 mt-8">Starting demo...</p>
         )}
       </div>
 
       {/* Input bar */}
       <div className="bg-[#f0f0f0] px-3 py-2 flex items-center gap-2">
-        {step < demoFlow.length ? (
+        {step >= demoFlow.length ? (
           <button
-            onClick={handleNext}
-            className="flex-1 bg-white rounded-full px-4 py-2 text-xs text-left text-gray-500 hover:bg-gray-50 transition-colors"
+            onClick={handleReplay}
+            className="flex-1 bg-white rounded-full px-4 py-2 text-xs text-center text-[#075E54] font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-1"
           >
-            Tap to continue demo...
+            <RotateCcw className="w-3 h-3" /> Replay Demo
           </button>
         ) : (
-          <button
-            onClick={handleReset}
-            className="flex-1 bg-white rounded-full px-4 py-2 text-xs text-center text-sproxil-teal font-semibold hover:bg-gray-50 transition-colors"
-          >
-            🔄 Restart Demo
-          </button>
+          <div className="flex-1 bg-white rounded-full px-4 py-2 text-xs text-gray-400">
+            Demo playing...
+          </div>
         )}
-        <div className="w-8 h-8 rounded-full bg-sproxil-teal flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full bg-[#075E54] flex items-center justify-center">
           <Send className="w-4 h-4 text-white" />
         </div>
       </div>

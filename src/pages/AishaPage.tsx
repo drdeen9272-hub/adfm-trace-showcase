@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import PhoneMockup from "@/components/PhoneMockup";
 import GlossaryTerm from "@/components/GlossaryTerm";
 import aishaPhoneImg from "@/assets/aisha-phone-demo.jpg";
+import sproxilLogo from "@/assets/sproxil-logo-red.jpg";
 
 const features = [
   { icon: Stethoscope, title: "Point of Care Diagnosis", desc: "AI-assisted interpretation of mRDT results from photos" },
@@ -84,7 +85,7 @@ const AishaPage = () => {
                 </div>
               </div>
 
-              <img src="/sproxil-logo.png" alt="Sproxil" className="h-10 mt-6 brightness-200" />
+              <img src={sproxilLogo} alt="Sproxil" className="h-10 mt-6" />
 
               {/* AISHA phone number */}
               <div className="mt-6 p-4 rounded-xl bg-primary-foreground/10 border border-primary-foreground/20">

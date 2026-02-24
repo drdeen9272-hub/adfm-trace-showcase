@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import GlossaryTerm from "@/components/GlossaryTerm";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
+import sproxilLogo from "@/assets/sproxil-logo-red.jpg";
 
 type DrillLevel = "national" | "state" | "lga";
 
@@ -63,7 +64,7 @@ const TPRDashboardPage = () => {
     <main>
       <section className="py-12 bg-primary">
         <div className="container">
-          <img src="/sproxil-logo.png" alt="Sproxil" className="h-10 mb-4 brightness-200" />
+          <img src={sproxilLogo} alt="Sproxil" className="h-10 mb-4" />
           <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
             <h1 className="text-3xl md:text-4xl font-extrabold text-primary-foreground mb-2">
               <GlossaryTerm term="TPR">Test Positivity Rate</GlossaryTerm> Dashboard
