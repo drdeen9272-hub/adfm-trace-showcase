@@ -9,6 +9,7 @@ import GlossaryTerm from "@/components/GlossaryTerm";
 import ppmvTestingImg from "@/assets/ppmv-testing.jpg";
 import swidarImg from "@/assets/swidar-package.jpg";
 import nigeriaMapImg from "@/assets/nigeria-coverage-map.jpg";
+import sproxilLogo from "@/assets/sproxil-logo-red.jpg";
 
 const stats = [
   { value: "4.5B+", label: "Products Protected" },
@@ -83,7 +84,7 @@ const Index = () => {
         </div>
 
         <div className="container relative z-10">
-          <img src="/sproxil-logo.png" alt="Sproxil" className="h-10 mb-8 brightness-200" />
+          <img src={sproxilLogo} alt="Sproxil" className="h-10 mb-8" />
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left — Text */}
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
@@ -107,7 +108,7 @@ const Index = () => {
                     Explore the Solution <ArrowRight className="ml-1 w-4 h-4" />
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
+                <Button size="lg" variant="outline" className="border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20" asChild>
                   <Link to="/tpr-dashboard">See the Dashboard</Link>
                 </Button>
               </div>
@@ -228,7 +229,7 @@ const Index = () => {
               <Button size="lg" className="bg-sproxil-gold text-foreground hover:bg-sproxil-gold/90 font-semibold" asChild>
                 <Link to="/aisha">Meet AISHA</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
+              <Button size="lg" variant="outline" className="border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20" asChild>
                 <Link to="/supply-chain">Supply Chain</Link>
               </Button>
             </div>
@@ -239,7 +240,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-8 bg-primary text-primary-foreground/60 text-center text-sm font-body">
         <div className="container">
-          <img src="/sproxil-logo.png" alt="Sproxil" className="h-8 mx-auto mb-3 brightness-200" />
+          <img src={sproxilLogo} alt="Sproxil" className="h-8 mx-auto mb-3" />
           <p>© {new Date().getFullYear()} Sproxil Inc. — ADMFm Interactive Demo Platform</p>
           <p className="mt-1 text-xs">4.5 billion products protected across 12 countries</p>
         </div>
