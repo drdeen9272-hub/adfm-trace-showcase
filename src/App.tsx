@@ -2,8 +2,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import SidebarLayout from "@/layouts/SidebarLayout";
+import PageTransition from "@/components/PageTransition";
 import Index from "./pages/Index";
 import AishaPage from "./pages/AishaPage";
 import SupplyChainPage from "./pages/SupplyChainPage";
@@ -20,6 +22,29 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+        <Route path="/aisha" element={<PageTransition><AishaPage /></PageTransition>} />
+        <Route path="/supply-chain" element={<PageTransition><SupplyChainPage /></PageTransition>} />
+        <Route path="/tpr-dashboard" element={<PageTransition><TPRDashboardPage /></PageTransition>} />
+        <Route path="/survey" element={<PageTransition><SurveyPage /></PageTransition>} />
+        <Route path="/me-framework" element={<PageTransition><MEFrameworkPage /></PageTransition>} />
+        <Route path="/dashboard" element={<PageTransition><DashboardPage /></PageTransition>} />
+        <Route path="/aisha-platform" element={<PageTransition><AishaPlatformPage /></PageTransition>} />
+        <Route path="/apps-directory" element={<PageTransition><AppsDirectoryPage /></PageTransition>} />
+        <Route path="/reports" element={<PageTransition><ReportsPage /></PageTransition>} />
+        <Route path="/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
+        <Route path="/modules/:moduleId" element={<PageTransition><ModulePlaceholderPage /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -27,21 +52,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <SidebarLayout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/aisha" element={<AishaPage />} />
-            <Route path="/supply-chain" element={<SupplyChainPage />} />
-            <Route path="/tpr-dashboard" element={<TPRDashboardPage />} />
-            <Route path="/survey" element={<SurveyPage />} />
-            <Route path="/me-framework" element={<MEFrameworkPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/aisha-platform" element={<AishaPlatformPage />} />
-            <Route path="/apps-directory" element={<AppsDirectoryPage />} />
-            <Route path="/reports" element={<ReportsPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/modules/:moduleId" element={<ModulePlaceholderPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </SidebarLayout>
       </BrowserRouter>
     </TooltipProvider>
